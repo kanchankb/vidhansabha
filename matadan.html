@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beautiful Login Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+        }
+
+        .header {
+            width: 100%;
+            background-color: navy;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 22px;
+            font-weight: bold;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 400px;
+            padding: 40px;
+            background: #fff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin-top: 100px; /* Adjusted to avoid overlap with the fixed header */
+        }
+
+        .login-box h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .input-box {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .input-box input {
+            width: 100%;
+            padding: 10px 10px;
+            font-size: 16px;
+            color: #333;
+            background: none;
+            border: none;
+            border-bottom: 2px solid #333;
+            outline: none;
+        }
+
+        .input-box span {
+            position: absolute;
+            left: 0;
+            bottom: 10px;
+            font-size: 16px;
+            color: #aaa;
+            transition: 0.3s;
+        }
+
+        .input-box input:focus ~ span,
+        .input-box input:valid ~ span {
+            transform: translateY(-20px);
+            font-size: 12px;
+            color: #333;
+        }
+
+        .login-btn, .other-btn {
+            width: 100%;
+            border: none;
+            padding: 10px;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+            border-radius: 5px;
+            margin-bottom: 15px; /* Space between buttons */
+        }
+
+        .login-btn {
+            background: navy;
+        }
+
+        .login-btn:hover {
+            background: #555;
+        }
+
+        .other-btn {
+            background: navy; /* Bootstrap Primary Color */
+        }
+
+        .other-btn:hover {
+            background: #0056b3; /* Darker shade on hover */
+        }
+
+        .signup {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .signup a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        विधानसभा निवडणूक 2024
+    </div>
+
+    <div class="login-container">
+        <div class="login-box">
+            
+            <a href="import excel.html">                <button type="button" class="other-btn">मतदान केंद्र नाव</button>
+            </a>
+
+            <button type="button" class="other-btn">staff</button>
+                <button type="button" class="other-btn">मतदान केंद्र बंदोबस्त</button>
+        
+        </div>
+    </div>
+
+</body>
+</html>

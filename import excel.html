@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Excel</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <style>
+        /* General styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Container for the upload form */
+        .container {
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        /* Title styling */
+        h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* Input field for file upload */
+        input[type="file"] {
+            padding: 10px;
+            border: 2px dashed #ccc;
+            border-radius: 8px;
+            width: 100%;
+            margin-bottom: 20px;
+            cursor: pointer;
+            background-color: #f9f9f9;
+        }
+
+        input[type="file"]:hover {
+            border-color: #888;
+        }
+
+        /* Button styling */
+        #submitBtn {
+            background-color: navy;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            width: 100%;
+        }
+
+        #submitBtn:hover {
+            background-color: navy;
+        }
+
+        /* Link button wrapper to prevent link text appearance */
+        a {
+            text-decoration: none;
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Upload Excel File</h1>
+        <input type="file" id="upload" accept=".xlsx, .xls" />
+        <a href="display.html"><button id="submitBtn">Submit and View</button></a>
+    </div>
+
+    <script>
+        let excelData;
+
+        // Function to read the uploaded Excel file
+        document.getElementById('upload').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                const data = new Uint8Array(e.target.result);
+                const workbook = XLSX.read(data, { type: 'array' });
+
+                // Assuming the data is on the first sheet
+                const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+                excelData = XLSX.utils.sheet_to_json(firstSheet, { header: 1 });
+                
+                // Store data in localStorage for the next page
+                localStorage.setItem('excelData', JSON.stringify(excelData));
+            };
+
+            reader.readAsArrayBuffer(file);
+        });
+
+        // Redirect to the display page on clicking submit
+        document.getElementById('submitBtn').addEventListener('click', function() {
+            window.location.href = 'display.html'; // This is the second page
+        });
+    </script>
+</body>
+</html>

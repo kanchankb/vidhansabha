@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Excel Data</title>
+    <style>
+        /* General styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* Table styling */
+        table {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px 0;
+            border-collapse: collapse;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: white;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: navy;
+            color: white;
+            font-weight: bold;
+        }
+
+        td {
+            background-color: #f9f9f9;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #f1f1f1;
+        }
+
+        tr:hover td {
+            background-color: #eaeaea;
+        }
+
+        /* Table border */
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        /* Responsive design */
+        @media (max-width: 600px) {
+            table {
+                font-size: 12px;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Excel File Data</h1>
+    <table id="excelTable"></table>
+
+    <script>
+        // Retrieve data from localStorage
+        const excelData = JSON.parse(localStorage.getItem('excelData'));
+
+        if (excelData) {
+            const table = document.getElementById('excelTable');
+            
+            excelData.forEach((row, index) => {
+                const tr = document.createElement('tr');
+                row.forEach(cell => {
+                    const td = document.createElement(index === 0 ? 'th' : 'td');
+                    td.textContent = cell;
+                    tr.appendChild(td);
+                });
+                table.appendChild(tr);
+            });
+        } else {
+            alert("No data available to display.");
+        }
+    </script>
+</body>
+</html>
